@@ -47,6 +47,10 @@ func _physics_process(delta):
 	HandleJump(delta)
 	HandleMove(delta)
 	
+	if (Input.is_action_just_pressed("interact")):
+		get_parent().get_node("PlayerTracker").Interact()
+		get_parent().get_node("ObjectDetector").Interact()
+	
 	if (sign(last_velocity.y) != sign(body.velocity.y)):
 		if (body.velocity.y < 0.0):
 			StartUp.emit()

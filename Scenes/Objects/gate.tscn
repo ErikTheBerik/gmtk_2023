@@ -40,17 +40,19 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hdrgk"]
-size = Vector2(20, 62)
+size = Vector2(43, 179)
 
-[node name="Gate" type="StaticBody2D"]
+[node name="Gate" type="StaticBody2D" groups=["RestartNode"]]
 collision_mask = 0
 script = ExtResource("1_iijvl")
 start_open = false
 
 [node name="Animation" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_bedcx")
 animation = &"activate"
 
 [node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(-7.5, 4.5)
 shape = SubResource("RectangleShape2D_hdrgk")

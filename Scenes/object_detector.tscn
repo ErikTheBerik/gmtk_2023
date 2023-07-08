@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://coxagsblliys2"]
+
+[ext_resource type="Script" path="res://Scenes/Player/object_detector.gd" id="1_hpxgj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0otle"]
+radius = 36.0555
+
+[node name="Area2D" type="Area2D"]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("1_hpxgj")
+
+[node name="ObjectDetector" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_0otle")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]

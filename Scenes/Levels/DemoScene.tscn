@@ -55,14 +55,14 @@ position = Vector2(536, -64)
 shape = SubResource("3")
 
 [node name="Player" parent="." instance=ExtResource("1_7g73n")]
-position = Vector2(166, 284)
+position = Vector2(162, 366)
 
 [node name="Gate2" parent="." instance=ExtResource("2_kgq86")]
-position = Vector2(549, 456)
+position = Vector2(551, 391)
 start_open = true
 
 [node name="Gate" parent="." instance=ExtResource("2_kgq86")]
-position = Vector2(645, 457)
+position = Vector2(829, 394)
 
 [node name="Switch" parent="." instance=ExtResource("3_2sdlx")]
 position = Vector2(352, 357)

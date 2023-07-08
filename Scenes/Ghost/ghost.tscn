@@ -1,26 +1,75 @@
-[gd_scene load_steps=4 format=3 uid="uid://cyi2pgfba5lim"]
+[gd_scene load_steps=13 format=3 uid="uid://cyi2pgfba5lim"]
 
 [ext_resource type="PackedScene" uid="uid://extvxjracyop" path="res://Scenes/Player/playback_controller.tscn" id="1_15nqd"]
+[ext_resource type="Script" path="res://Scenes/Ghost/ghost.gd" id="1_bp86n"]
+[ext_resource type="Texture2D" uid="uid://noa08bkucmpc" path="res://Assets/catset_assets/cat05_spritesheets/cat05_run_strip4.png" id="2_tmu3i"]
+[ext_resource type="Script" path="res://Scenes/Ghost/Animation_Ghost.gd" id="3_712lv"]
+[ext_resource type="Script" path="res://Scenes/Ghost/ghost_collision.gd" id="4_rjk8n"]
+[ext_resource type="PackedScene" uid="uid://coxagsblliys2" path="res://Scenes/object_detector.tscn" id="6_7g8kp"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vf0jp"]
-size = Vector2(129, 20)
+[sub_resource type="AtlasTexture" id="AtlasTexture_rj42b"]
+atlas = ExtResource("2_tmu3i")
+region = Rect2(0, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kylat"]
+atlas = ExtResource("2_tmu3i")
+region = Rect2(40, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vraxa"]
+atlas = ExtResource("2_tmu3i")
+region = Rect2(80, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nfsgf"]
+atlas = ExtResource("2_tmu3i")
+region = Rect2(120, 0, 40, 40)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qwig3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rj42b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kylat")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vraxa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nfsgf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
 
-[node name="Ghost" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_cpmwa"]
+radius = 18.0278
+
+[node name="Ghost" type="Node2D" groups=["RestartNode"]]
+script = ExtResource("1_bp86n")
 
 [node name="PlaybackController" parent="." instance=ExtResource("1_15nqd")]
 player_path = NodePath("..")
 
+[node name="Animation" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -18)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_qwig3")
+frame_progress = 0.0153419
+script = ExtResource("3_712lv")
+
 [node name="Area2D" type="Area2D" parent="."]
-collision_layer = 4
-collision_mask = 0
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("4_rjk8n")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(1, -56)
-shape = SubResource("RectangleShape2D_vf0jp")
+position = Vector2(-3, -13)
+shape = SubResource("CircleShape2D_cpmwa")
 
-[node name="Animation" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_qwig3")
+[node name="ObjectDetector" parent="." instance=ExtResource("6_7g8kp")]
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

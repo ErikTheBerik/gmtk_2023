@@ -3,6 +3,10 @@ extends StaticBody2D
 
 var is_open = true
 func _ready():
+	Restart()
+	
+func Restart():
+	is_open = true
 	$Animation.stop()
 	$Animation.speed_scale = 1.0
 	$Animation.frame = 0

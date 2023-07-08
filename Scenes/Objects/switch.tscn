@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bl6qf6rvg5o2c"]
+[gd_scene load_steps=8 format=3 uid="uid://bl6qf6rvg5o2c"]
 
 [ext_resource type="Script" path="res://Scenes/Objects/switch.gd" id="1_fxacw"]
 [ext_resource type="Texture2D" uid="uid://bs3bdruls20rd" path="res://Assets/Switch.png" id="2_hdtk2"]
@@ -32,10 +32,20 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="Switch" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_laibc"]
+radius = 31.0161
+
+[node name="Switch" type="Node2D" groups=["RestartNode"]]
 script = ExtResource("1_fxacw")
 
 [node name="Animation" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_fk2eu")
 animation = &"activate"
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_laibc")

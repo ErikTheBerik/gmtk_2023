@@ -9,7 +9,7 @@ var is_playing = false
 var index = 0
 var playbackDirection = 0
 var playbackTimer = 0.0;
-var playbackRate = 0.85
+var playbackRate = 1.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,8 +20,12 @@ func _physics_process(delta):
 	if (!is_playing):
 		return;
 	
+	var currentData = TrackedData[index];
+	if (currentData.interact):
+		get_parent().get_node("ObjectDetector").Interact();
+		
 	playbackTimer += delta * playbackRate
-	get_parent().global_position = lerp(get_parent().global_position, TrackedData[index].position, playbackTimer/delta)
+	get_parent().global_position = lerp(get_parent().global_position, currentData.position, playbackTimer/delta)
 	
 	# physics are run at a fixed delta
 	if (playbackTimer >= delta):
@@ -40,3 +44,4 @@ func Playback():
 	index = TrackedData.size() - 1
 	playbackDirection = -1
 	playbackTimer = 0
+	get_parent().global_position = TrackedData[index].position
