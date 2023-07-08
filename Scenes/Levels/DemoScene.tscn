@@ -1,6 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://6a5judrou468"]
+[gd_scene load_steps=7 format=3 uid="uid://6a5judrou468"]
 
 [ext_resource type="PackedScene" uid="uid://bypwsuh53pln5" path="res://Scenes/Player/player.tscn" id="1_7g73n"]
+[ext_resource type="PackedScene" uid="uid://q7dvj1ye355c" path="res://Scenes/Objects/gate.tscn" id="2_kgq86"]
+[ext_resource type="PackedScene" uid="uid://bl6qf6rvg5o2c" path="res://Scenes/Objects/switch.tscn" id="3_2sdlx"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(1024, 112)
@@ -53,6 +55,15 @@ position = Vector2(536, -64)
 shape = SubResource("3")
 
 [node name="Player" parent="." instance=ExtResource("1_7g73n")]
-position = Vector2(158, 280)
-gravity = 8000.0
-jump_stop_force = 1000
+position = Vector2(166, 284)
+
+[node name="Gate2" parent="." instance=ExtResource("2_kgq86")]
+position = Vector2(549, 456)
+start_open = true
+
+[node name="Gate" parent="." instance=ExtResource("2_kgq86")]
+position = Vector2(645, 457)
+
+[node name="Switch" parent="." instance=ExtResource("3_2sdlx")]
+position = Vector2(352, 357)
+ObjectPaths = Array[NodePath]([NodePath("../Gate2"), NodePath("../Gate")])

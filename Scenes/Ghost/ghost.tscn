@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://cyi2pgfba5lim"]
+
+[ext_resource type="PackedScene" uid="uid://extvxjracyop" path="res://Scenes/Player/playback_controller.tscn" id="1_15nqd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vf0jp"]
+size = Vector2(129, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qwig3"]
+
+[node name="Ghost" type="Node2D"]
+
+[node name="PlaybackController" parent="." instance=ExtResource("1_15nqd")]
+player_path = NodePath("..")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, -56)
+shape = SubResource("RectangleShape2D_vf0jp")
+
+[node name="Animation" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_qwig3")
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

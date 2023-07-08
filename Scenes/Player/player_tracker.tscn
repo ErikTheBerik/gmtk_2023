@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3c3udvttp5as"]
+
+[ext_resource type="Script" path="res://Scenes/Player/position_tracker.gd" id="1_sbs7f"]
+[ext_resource type="PackedScene" uid="uid://cyi2pgfba5lim" path="res://Scenes/Ghost/ghost.tscn" id="2_ww46e"]
+
+[node name="PlayerTracker" type="Node2D"]
+script = ExtResource("1_sbs7f")
+GhostScene = ExtResource("2_ww46e")

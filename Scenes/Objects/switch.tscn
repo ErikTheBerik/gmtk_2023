@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://bl6qf6rvg5o2c"]
+
+[ext_resource type="Script" path="res://Scenes/Objects/switch.gd" id="1_fxacw"]
+[ext_resource type="Texture2D" uid="uid://bs3bdruls20rd" path="res://Assets/Switch.png" id="2_hdtk2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qggpb"]
+atlas = ExtResource("2_hdtk2")
+region = Rect2(0, 0, 45, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v8m32"]
+atlas = ExtResource("2_hdtk2")
+region = Rect2(45, 0, 45, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s3tm7"]
+atlas = ExtResource("2_hdtk2")
+region = Rect2(90, 0, 45, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fk2eu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qggpb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v8m32")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s3tm7")
+}],
+"loop": false,
+"name": &"activate",
+"speed": 10.0
+}]
+
+[node name="Switch" type="Node2D"]
+script = ExtResource("1_fxacw")
+
+[node name="Animation" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_fk2eu")
+animation = &"activate"
